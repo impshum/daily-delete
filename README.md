@@ -14,7 +14,7 @@ Posts a submission to a chosen subreddit every day and deletes it after 24hrs
 
 #### Info
 
-Separate titles and text in posts.txt with a pipe ```|```
-Posts are picked at random from posts.txt
-Posts are not deleted from posts.txt
-Windows users see this post to enable colours in your terminal/prompt: https://recycledrobot.co.uk/words/?print-python-colours
+- Separate titles and text in posts.txt with a pipe ```|```
+- Posts are picked at random from posts.txt
+- Posts are not deleted from posts.txt
+- Windows users see this post to enable colours in your terminal/prompt: https://recycledrobot.co.uk/words/?print-python-colours
