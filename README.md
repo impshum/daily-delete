@@ -14,5 +14,5 @@ Posts a submission to a chosen subreddit every day and deletes it after 24hrs.
 
 #### Info
 
-Separate titles and text in posts.txt with a pipe ```|```.
+Separate titles and text in posts.txt with a pipe ```|```.  
 Posts are picked at random.
