@@ -2,7 +2,7 @@
 
 Posts a submission to a chosen subreddit every day and deletes it after 24hrs
 
-![](https://github.com/impshum/daily-delete/blob/master/screenshot.jpg?raw=true)
+![](https://github.com/impshum/daily-delete/blob/master/ss.jpg?raw=true)
 
 ### Instructions
 
