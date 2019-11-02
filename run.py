@@ -4,6 +4,7 @@ from time import sleep
 from random import choice
 import configparser
 import datetime
+import os
 
 
 class C:
@@ -14,13 +15,15 @@ def get_date():
     return f"{datetime.datetime.now():%d/%m/%Y}"
 
 
-def runner(reddit, target_subreddit, test_mode):
+def runner(reddit, target_subreddit, posts_folder, test_mode):
     with open('last.txt', 'r') as f:
         last_id = f.read().strip()
     if last_id != 'start':
         reddit.submission(last_id).delete()
 
-    with open('posts.txt') as f:
+    random_file = choice(os.listdir(posts_folder))
+
+    with open(f'{posts_folder}/{random_file}') as f:
         line = choice(f.read().splitlines()).split('|')
         title = line[0].strip()
         selftext = line[1].strip()
@@ -32,7 +35,7 @@ def runner(reddit, target_subreddit, test_mode):
         with open('last.txt', 'w') as f:
             f.write(new_id.id)
 
-    print(f'{C.G}{get_date()} {C.Y}{title} {C.C}{selftext}{C.W}')
+    print(f'{C.G}{get_date()} {C.Y}{title} {C.C}{selftext} {C.P}{random_file}{C.W}')
 
 
 def main():
@@ -45,6 +48,7 @@ def main():
     target_subreddit = config['REDDIT']['target_subreddit']
     post_time = config['SETTINGS']['post_time']
     test_mode = int(config['SETTINGS']['test_mode'])
+    posts_folder = config['SETTINGS']['posts_folder']
 
     reddit = praw.Reddit(client_id=client_id,
                          client_secret=client_secret,
@@ -60,17 +64,17 @@ def main():
     print(f"""{C.Y}
 ╔╦╗╔═╗╦╦ ╦ ╦  ╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗
  ║║╠═╣║║ ╚╦╝   ║║║╣ ║  ║╣  ║ ║╣  {t}
-═╩╝╩ ╩╩╩═╝╩   ═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝ {C.C}v1.0{C.W}
+═╩╝╩ ╩╩╩═╝╩   ═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝ {C.C}v1.1{C.W}
 
 Posting every day at {post_time}
 Bot started on {get_date()}
     """)
 
     if test_mode:
-        runner(reddit, target_subreddit, test_mode)
+        runner(reddit, target_subreddit, posts_folder, test_mode)
     else:
         schedule.every().day.at(post_time).do(
-            runner, reddit, target_subreddit, test_mode)
+            runner, reddit, target_subreddit, posts_folder, test_mode)
         while True:
             schedule.run_pending()
             sleep(1)
