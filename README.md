@@ -19,3 +19,7 @@ Posts a submission to a chosen subreddit every day and deletes it after 24hrs
 - Posts and files are not deleted
 - You should be able to edit/add/remove posts without stopping the bot
 - Windows users see this post to enable colours in your terminal/prompt: https://recycledrobot.co.uk/words/?print-python-colours
+
+---
+
+BTC - 1AYSiE7mhR9XshtS4mU2rRoAGxN8wSo4tK
